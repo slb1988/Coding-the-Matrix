@@ -57,8 +57,10 @@ def test_format(obj, precision=6):
     otype = type(obj)
     if otype is str:
         return "'%s'" % obj
-    elif otype is float:
-        fstr = '%%.%dg' % precision
+    elif otype is float or otype is int:
+        if otype is int:
+            obj = float(obj)
+        fstr = '%%.%df' % precision
         return fstr % obj
     elif otype is set:
         if len(obj) == 0:
